@@ -1,10 +1,12 @@
-import app from './app.js'
-import { connectDB} from './src/config/db.js'
+import app from './app.js';
+import { connectDB } from './src/config/db.js';
 
-//Ejecutamos la funcion para la conexion a la db
-connectDB()
+// Ejecutamos la funcion para la conexión a la base de datos
+connectDB();
 
-//Ejecutamos la aplicacion en el puerto 4000
-app.listen(4000)
+// Ejecutamos la aplicación en el puerto 4000
+const port = 4000;
 
-console.log('El servidor esta escuchando en el puerto',4000)
+app.listen(port, () => {
+  console.log(`El servidor está escuchando en el puerto ${port}`);
+});

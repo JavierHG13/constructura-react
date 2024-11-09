@@ -9,6 +9,7 @@ import { DetallesProyecto } from './pages/DetallesProyecto';
 import { DetallesServicio } from './pages/DetallesServicio';
 import { MyAcount } from './pages/Cuenta';
 import {ContactForm } from './pages/contacto'; 
+import OfertaComponent from './pages/cliente/Ofertas';
 //import { FormLogin } from './pages/login';
 
 function App() {
@@ -28,6 +29,9 @@ function App() {
                     <Route path="/mi-cuenta" element={<  MyAcount/>} /> 
 
                     <Route path="/contactanos" element={< ContactForm/>} /> 
+
+
+                    <Route path="/clientedecons" element={< OfertaComponent/>} /> 
 
                 </Routes>
             </div>

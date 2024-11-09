@@ -1,12 +1,6 @@
-import mongoose, { Schema } from "mongoose"; 
+import mongoose, { Schema } from "mongoose";
 
 const userSchema = new mongoose.Schema({
-
-    username: {
-        type: String,
-        required: true,
-        trim: true,
-    },
     email: {
         type: String,
         required: true, 
@@ -17,8 +11,13 @@ const userSchema = new mongoose.Schema({
         type: String, 
         required: true, 
     },
-},{
+    role: {
+        type: String,
+        enum: ['cliente', 'admin'], // Permite solo 'cliente' o 'admin'
+        default: 'publico' // Si no se especifica el rol, se asigna 'cliente' por defecto
+    },
+}, {
     timestamps: true 
-})
+});
 
-export default mongoose.model('Usuarios', userSchema); 
+export default mongoose.model('Usuarios', userSchema);
