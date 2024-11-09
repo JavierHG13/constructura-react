@@ -1,69 +1,57 @@
-// Servicios.js
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import '../estilos/servicios.css';
 
-import { ServicioComponente } from '../components/servicio.jsx';
-
 export const Servicios = () => {
+    const [servicios, setServicios] = useState([]);
+    const navigate = useNavigate();
 
-    /*const [servicios, setServicios] = useState([]);
+    const urlServicios = "http://localhost:4000/api/servicios";
+    
+    //Para mostrar la pagina de los detalles
+    const handleClick = async(nombre) =>
+    {
+        navigate(`/servicios/${nombre}`);
+    };
+
 
     useEffect(() => {
-
         const fetchServicios = async () => {
-
             try {
-                const response = await fetch('');
-                const data = await response.json();
-                setServicios(data);
+                const response = await axios.get(urlServicios);
+                
+                setServicios(response.data.data);
+
             } catch (error) {
                 console.error("Error al obtener los servicios:", error);
             }
         };
 
-        fetchServicios(); 
-    }, []);*/
-
+        fetchServicios();
+    }, []);
 
     return (
         <div className='container'>
             <h1>SERVICIOS</h1>
-
-            <p>
-                Nos involucramos desde la planificación hasta la ejecución de proyectos de ingeniería civil y arquitectura, tales como; Obra civil, movimiento de tierras, construcción de carreteras, mejoramiento de suelos, pavimentos, urbanizaciones, levantamientos topográficos, elaboración de planos y diseño de interiores.
-            </p>
+            <p>Nos involucramos desde la planificación hasta la ejecución de proyectos de ingeniería civil y arquitectura, tales como; Obra civil, movimiento de tierras, construcción de carreteras, mejoramiento de suelos, pavimentos, urbanizaciones, levantamientos topográficos, elaboración de planos y diseño de interiores.</p>
 
             <div className="servicios-container">
+                
+                {servicios.map((servicio, index) => (
+                    <div
+                        key={index}
+                        className="servicio-card"
+                        onClick={() => handleClick(servicio.nombre)}>
 
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/movimiento-de-tierras.jpg"
-                    nombre="Obra civil"
-                />
-
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/diseno-de-interiores.jpeg"
-                    nombre="Diseño de interiores"
-                />
-
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/mejoramiento-de-calles-y-construccion-de-carreteras_4.jpg"
-                    nombre="Mejoramiento de suelos y pavimentos"
-                />
-
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/mejoramiento-de-suelos-y-pavimentos_5.jpg"
-                    nombre="Mejoramiento de Calles y Construcción de Carreteras"
-                />
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/urbanizaciones.jpeg"
-                    nombre="Urbanizaciones"
-                />
-
-                <ServicioComponente
-                    img="https://www.constructoradaze.com/img/galerias/th/urbanizaciones.jpeg"
-                    nombre="Urbanizaciones"
-                />
+                        <img src={servicio.imgURL} alt={servicio.nombre} />
+                        
+                        <div className="servicio-content">
+                            <h3>{servicio.nombre}</h3>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

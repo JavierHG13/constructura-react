@@ -7,6 +7,9 @@ import { Servicios } from './pages/Servicios';
 import { Proyectos } from './pages/Proyectos';
 import { DetallesProyecto } from './pages/DetallesProyecto';
 import { DetallesServicio } from './pages/DetallesServicio';
+//import { MyAcount } from './pages/Cuenta';
+import {ContactForm } from './pages/contacto'; 
+import { FormLogin } from './pages/login';
 
 function App() {
     return (
@@ -21,6 +24,10 @@ function App() {
 
                     <Route path="/proyectos" element={<Proyectos />} />
                     <Route path="/proyectos/:nombreProyectos" element={<DetallesProyecto />} /> 
+
+                    <Route path="/mi-cuenta" element={< FormLogin/>} /> 
+
+                    <Route path="/contactanos" element={< ContactForm/>} /> 
 
                 </Routes>
             </div>

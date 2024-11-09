@@ -3,12 +3,15 @@ nav {
     background-color: white;
     padding: 1rem;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* sombra en lugar de borde */
+    display: flex;
+    align-items: center;
 }
 
 ul {
     list-style: none;
     display: flex;
     gap: 1rem;
+    margin-right: 400px;
 }
 
 li a {
@@ -21,4 +24,65 @@ li a {
 li a:hover {
     background-color: grey;
     border-radius: 4px;
+}
+
+
+/*Estilos para el icono de perfil*/
+.menu-item {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.dropdown-menu {
+    display: none; /* Ocultar por defecto */
+    position: absolute;
+    top: 100%; /* Coloca el menú debajo del elemento */
+    left: 0;
+    width: 250px; /* Ajusta el ancho como desees */
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menu-item:hover .dropdown-menu {
+    display: block; /* Muestra el menú cuando el cursor pasa por encima */
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+form a {
+    font-size: 0.9rem; /* Tamaño de fuente más pequeño */
+    color: #C0C0C0; /* Gris plateado */
+    text-decoration: none; /* Elimina el subrayado */
+    margin: 5px 0; /* Espaciado vertical */
+}
+
+form a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
