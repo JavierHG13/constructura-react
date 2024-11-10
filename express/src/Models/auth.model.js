@@ -5,11 +5,12 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true, 
         trim: true, 
-        unique: true
+        unique: true,
     },
     password: {
         type: String, 
         required: true, 
+        //minlength: [6, 'La contraseña debe tener al menos 6 caracteres'], // Solo validación de longitud mínima
     },
     role: {
         type: String,

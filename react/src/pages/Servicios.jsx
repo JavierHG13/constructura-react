@@ -21,6 +21,8 @@ export const Servicios = () => {
         const fetchServicios = async () => {
             try {
                 const response = await axios.get(urlServicios);
+
+                console.log(response)
                 
                 setServicios(response.data.data);
 

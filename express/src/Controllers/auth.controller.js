@@ -3,7 +3,11 @@ import bcrypt from 'bcryptjs'
 import { createAccesToken } from '../libs/jwt.js'
 
 export const registro = async (req, res) => {
+<<<<<<< Updated upstream
     const { email, password, role } = req.body; // Incluimos el rol en la desestructuración
+=======
+    const { email, password, role} = req.body;
+>>>>>>> Stashed changes
 
     console.log("Datos recibidos:", req.body);
 
@@ -13,27 +17,40 @@ export const registro = async (req, res) => {
             return res.status(400).json({ message: "El email y la contraseña son requeridos" });
         }
 
+        const userSearch = await User.findOne({ email });
+
+        if(userSearch){
+            return res.status(400).json({ message: "El email correo ya esta en uso" });
+        }
+
+        if(password.length < 5){
+            return res.status(400).json({ message: "La contraseña es demasiado debil" });
+        }
+
         console.log("Iniciando el hash de la contraseña...");
+
         const passwordHash = await bcrypt.hash(password, 10); // Hash de la contraseña
         console.log("Contraseña hasheada:", passwordHash);
 
         const newUser = new User({
             email,
             password: passwordHash,
+<<<<<<< Updated upstream
             role: role || 'cliente' // Asigna 'cliente' si no se especifica el rol
+=======
+            role
+>>>>>>> Stashed changes
         });
 
-        console.log("Creando nuevo usuario con email:", email);
-
         const userSaved = await newUser.save(); // Guardar el usuario en la base de datos
-        console.log("Usuario guardado en la base de datos:", userSaved);
 
         // Crear el token de acceso
         const token = await createAccesToken({ id: userSaved._id });
+
         console.log("Token generado:", token);
 
         res.cookie('token', token); // Guardar el token en una cookie
-        console.log("Token guardado en la cookie");
+     
 
         // Responder al cliente con los datos del usuario
         res.json({

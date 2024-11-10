@@ -11,7 +11,7 @@ import { MyAcount } from './pages/Cuenta';
 import {ContactForm } from './pages/contacto'; 
 import OfertaComponent from './pages/cliente/Ofertas';
 import Modulo from './pages/Administrador/Modulo'
-//import { FormLogin } from './pages/login';
+import { CrearCuenta } from './pages/Crear_cuenta';
 
 function App() {
     return (
@@ -30,6 +30,8 @@ function App() {
                     <Route path="/mi-cuenta" element={<  MyAcount/>} /> 
 
                     <Route path="/contactanos" element={< ContactForm/>} /> 
+                    
+                    <Route path="/crear-cuenta" element={<CrearCuenta/>} /> 
 
 
                     <Route path="/clientedecons" element={< OfertaComponent/>} /> 

@@ -18,7 +18,11 @@ app.use(express.json())
 
 
 app.use('/api', serviciosRoute);  // Ruta para servicios
+<<<<<<< Updated upstream
 app.use('/api/proyectos', proyectoRoute);   // Ruta para proyectos
+=======
+app.use('/api', proyectoRoute);   // Ruta para proyectos
+>>>>>>> Stashed changes
 app.use('/api/auth', authRoute);            // Ruta para autenticación
 
 

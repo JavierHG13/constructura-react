@@ -9,11 +9,10 @@ export const Navbar = () => {
                 <li><Link to="/">Inicio</Link></li>
                 <li><Link to="/servicios">Servicios</Link></li>
                 <li><Link to="/proyectos">Proyectos</Link></li>
-                <li><Link to="/nosotros">Nosotros</Link></li> {/* Corrige la ortografía */}
+                <li><Link to="/nosotros">Nosotros</Link></li>
                 <li><Link to="/contactanos">Contáctanos</Link></li>
-                
-              
-              
+                <li><Link to="/crear-cuenta">Crear cuenta</Link></li>
+                <li><Link to="/iniciar-sesion">Iniciar sesion</Link></li>
             </ul>
 
             <div className="menu-item">
