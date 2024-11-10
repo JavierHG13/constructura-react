@@ -10,6 +10,7 @@ import { DetallesServicio } from './pages/DetallesServicio';
 import { MyAcount } from './pages/Cuenta';
 import {ContactForm } from './pages/contacto'; 
 import OfertaComponent from './pages/cliente/Ofertas';
+import Modulo from './pages/Administrador/Modulo'
 //import { FormLogin } from './pages/login';
 
 function App() {
@@ -32,6 +33,8 @@ function App() {
 
 
                     <Route path="/clientedecons" element={< OfertaComponent/>} /> 
+
+                    <Route path="/moduloadm" element={< Modulo/>} /> 
 
                 </Routes>
             </div>

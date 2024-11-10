@@ -17,7 +17,7 @@ app.use(morgan('dev'))
 app.use(express.json()) 
 
 
-app.use('/api/servicios', serviciosRoute);  // Ruta para servicios
+app.use('/api', serviciosRoute);  // Ruta para servicios
 app.use('/api/proyectos', proyectoRoute);   // Ruta para proyectos
 app.use('/api/auth', authRoute);            // Ruta para autenticación
 

@@ -2,11 +2,9 @@ import User from '../Models/auth.model.js'
 import bcrypt from 'bcryptjs'
 import { createAccesToken } from '../libs/jwt.js'
 
-
 export const registro = async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password, role } = req.body; // Incluimos el rol en la desestructuración
 
-    // Log para verificar que se recibieron los datos correctamente
     console.log("Datos recibidos:", req.body);
 
     try {
@@ -21,7 +19,8 @@ export const registro = async (req, res) => {
 
         const newUser = new User({
             email,
-            password: passwordHash
+            password: passwordHash,
+            role: role || 'cliente' // Asigna 'cliente' si no se especifica el rol
         });
 
         console.log("Creando nuevo usuario con email:", email);
@@ -40,6 +39,7 @@ export const registro = async (req, res) => {
         res.json({
             id: userSaved._id,
             email: userSaved.email,
+            role: userSaved.role, // Incluimos el rol en la respuesta
             createdAt: userSaved.createdAt,
             message: "Usuario creado correctamente"
         });
@@ -49,6 +49,8 @@ export const registro = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
 
 
 export const login = async (req, res) => {

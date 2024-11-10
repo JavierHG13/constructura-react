@@ -11,6 +11,9 @@ export const Navbar = () => {
                 <li><Link to="/proyectos">Proyectos</Link></li>
                 <li><Link to="/nosotros">Nosotros</Link></li> {/* Corrige la ortografía */}
                 <li><Link to="/contactanos">Contáctanos</Link></li>
+                
+              
+              
             </ul>
 
             <div className="menu-item">

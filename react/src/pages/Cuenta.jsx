@@ -33,13 +33,16 @@ export const MyAcount = () => {
             const result = await response.json();
 
             if (response.ok) {
-                // Si el login es exitoso, redirigir al módulo 'carro'
                 console.log('Login exitoso', result);
-                // Guardar el token en localStorage (opcional, dependiendo de cómo manejas las sesiones)
                 localStorage.setItem('token', result.token);
-                navigate('/clientedecons'); // Redirigir a la ruta del módulo 'Carro'
+    
+                // Redirigir dependiendo del rol
+                if (result.data.role === 'admin') {
+                    navigate('/moduloadm'); // Redirigir al módulo 'pepa' para admin
+                } else {
+                    navigate('/clientedecons'); // Redirigir a la ruta del módulo 'Carro' para clientes
+                }
             } else {
-                // Si el login falla, mostrar el mensaje de error
                 setLoginError(result.message || 'Error al iniciar sesión');
             }
         } catch (error) {

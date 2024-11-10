@@ -8,7 +8,7 @@ export const Servicios = () => {
     const [servicios, setServicios] = useState([]);
     const navigate = useNavigate();
 
-    const urlServicios = "http://localhost:4000/api/servicios";
+    const urlServicios = "http://localhost:4000/api/servicios/img";
     
     //Para mostrar la pagina de los detalles
     const handleClick = async(nombre) =>

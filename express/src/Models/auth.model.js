@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         enum: ['cliente', 'admin'], // Permite solo 'cliente' o 'admin'
-        default: 'publico' // Si no se especifica el rol, se asigna 'cliente' por defecto
+        default: 'cliente' // Si no se especifica el rol, se asigna 'cliente' por defecto
     },
 }, {
     timestamps: true 
