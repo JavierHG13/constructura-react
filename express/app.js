@@ -1,6 +1,8 @@
 import express, { json } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
+import cookieParser from "cookie-parser";
+
 
 //Importaciones de las rutas
 import serviciosRoute from './src/Routes/Servicio.route.js';
@@ -10,20 +12,18 @@ import authRoute from './src/Routes/auth.route.js';
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:3000', //Permirir solicitudes solo desde este dominio
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
 }));
 
+app.use(cookieParser());
 app.use(morgan('dev')) 
 app.use(express.json()) 
 
 
 app.use('/api', serviciosRoute);  // Ruta para servicios
-<<<<<<< Updated upstream
-app.use('/api/proyectos', proyectoRoute);   // Ruta para proyectos
-=======
 app.use('/api', proyectoRoute);   // Ruta para proyectos
->>>>>>> Stashed changes
-app.use('/api/auth', authRoute);            // Ruta para autenticación
+app.use('/api/auth', authRoute);  // Ruta para autenticación
 
 
 

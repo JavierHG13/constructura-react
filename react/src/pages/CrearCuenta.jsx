@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'; 
+import { useAuth } from "./Contexto/AuthContext";
+import '../estilos/cuenta.css';
 
 export const CrearCuenta = () => {
 
@@ -10,6 +12,7 @@ export const CrearCuenta = () => {
 
     const navigate = useNavigate(); // Hook para redirigir al usuario despues de crear la cuenta
 
+        const { registro } = useAuth();
 
     // Función para manejar el registro
     const handleRegister = async (e) => {
@@ -21,7 +24,10 @@ export const CrearCuenta = () => {
             password: password
         };
 
-        try {
+        //Llamamos a la funcion registrar
+        await registro(data);
+
+        /*try {
             // Hacer la solicitud POST a la API de registro
             const response = await fetch('http://localhost:4000/api/auth/registro', {
                 method: 'POST',
@@ -35,18 +41,19 @@ export const CrearCuenta = () => {
 
             if (response.ok) {
                 // Aquí puedes hacer algo con el resultado de la API si la respuesta es exitosa
-                console.log('Cuenta creada exitosamente', result);
+                showAlert("Crear cuenta",  result.message,"success" );
             } else {
                 // En caso de error, mostrar el mensaje
-                console.error('Error al crear la cuenta:', result.message);
+                //console.error('Error al crear la cuenta:', result.message);
+                showAlert("Crear cuenta",  result.message, "error");
             }
         } catch (error) {
             console.error('Error al conectar con la API:', error);
-        }
+        }*/
     };
 
     return (
-        <div className='crear-cuenta-contenedor'>
+        <div className='mi-cuenta-contenedor'>
 
             <div className='crear-cuenta'>
                 <h2>CREAR CUENTA</h2>

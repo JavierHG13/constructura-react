@@ -1,13 +1,11 @@
 import User from '../Models/auth.model.js'
 import bcrypt from 'bcryptjs'
 import { createAccesToken } from '../libs/jwt.js'
+import { TOKEN_SECRET } from '../config/config.js';
+import jwt from 'jsonwebtoken'
 
 export const registro = async (req, res) => {
-<<<<<<< Updated upstream
-    const { email, password, role } = req.body; // Incluimos el rol en la desestructuración
-=======
     const { email, password, role} = req.body;
->>>>>>> Stashed changes
 
     console.log("Datos recibidos:", req.body);
 
@@ -35,11 +33,7 @@ export const registro = async (req, res) => {
         const newUser = new User({
             email,
             password: passwordHash,
-<<<<<<< Updated upstream
             role: role || 'cliente' // Asigna 'cliente' si no se especifica el rol
-=======
-            role
->>>>>>> Stashed changes
         });
 
         const userSaved = await newUser.save(); // Guardar el usuario en la base de datos
@@ -73,6 +67,11 @@ export const registro = async (req, res) => {
 export const login = async (req, res) => {
     const { email, password } = req.body;
 
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email y contraseña son obligatorios' });
+    }
+    
+
     try {
         const userFound = await User.findOne({ email }); // Buscar el usuario por email
 
@@ -96,6 +95,7 @@ export const login = async (req, res) => {
             success: true,
             message: "Inicio de sesión exitoso",
             data: {
+                Token:token,
                 id: userFound._id,
                 username: userFound.username,
                 email: userFound.email,
@@ -107,6 +107,28 @@ export const login = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
+};
+
+export const verifyToken = async (req, res) => {
+
+    //const { token } = req.cookies;
+    const { token } = req.params; // Extraer el token de los parámetros de la URL
+    console.log("este es el token" + token)
+    if (!token) return res.send(false);
+  
+    jwt.verify(token, TOKEN_SECRET, async (error, user) => {
+
+      if (error) return res.sendStatus(401);
+  
+      const userFound = await User.findById(user.id);
+      if (!userFound) return res.sendStatus(401);
+  
+      return res.json({
+        id: userFound._id,
+        email: userFound.email,
+        role: userFound.role
+      });
+    });
 };
 
 
